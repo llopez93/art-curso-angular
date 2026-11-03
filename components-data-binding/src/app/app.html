@@ -1,0 +1,130 @@
+
+    <!-- MAIN CONTENT CONTAINER -->
+         <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+  
+        <!-- DASHBOARD VIEW -->
+        <main class="flex-1 overflow-y-auto p-6 lg:p-8">
+            <app-page-header></app-page-header>
+            <!-- Two Columns Layout -->
+
+            @for (item of items; track item.description) {
+                <p>{{ item.description }} - {{ item.amount }}</p>
+            }
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+                
+                <div class="xl:col-span-4">
+                  <app-tax-form (item)="onItemAdded($event)"></app-tax-form>
+                </div>
+                <!-- RIGHT COLUMN: Table and Totals (8 cols) -->
+                <div class="xl:col-span-8 space-y-6">
+                    
+                    <app-tax-list></app-tax-list>
+
+                    <!-- Totals Summary Card -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 flex flex-col items-end">
+                        <div class="w-full md:w-96 space-y-3">
+                            <h4 class="text-sm font-bold text-slate-800 uppercase tracking-wider pb-2 border-b border-slate-100 text-right">Resumen de Totales</h4>
+                            
+                            <div class="flex justify-between items-center text-sm text-slate-600">
+                                <span>Total Base (Neto):</span>
+                                <span id="total-base" class="font-semibold text-slate-800">$0,00</span>
+                            </div>
+
+                            <div class="flex justify-between items-center text-sm text-slate-600 pb-3 border-b border-slate-200">
+                                <span>Total Impuestos:</span>
+                                <span id="total-taxes" class="font-semibold text-slate-800">$0,00</span>
+                            </div>
+
+                            <div class="flex justify-between items-center text-lg font-bold text-slate-900 pt-1">
+                                <span>TOTAL A PAGAR:</span>
+                                <span id="total-final" class="text-blue-600">$0,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Initial dataset matching the reference image exactly
+        let items = [
+            {
+                id: 1,
+                description: "Notebook",
+                category: "Electrónica",
+                rate: 0.305,
+                base: 150000
+            },
+            {
+                id: 2,
+                description: "Libro de Historia",
+                category: "Libros",
+                rate: 0.0,
+                base: 3000
+            },
+            {
+                id: 3,
+                description: "Alimentos Básicos",
+                category: "Alimentos Básicos",
+                rate: 0.105,
+                base: 25000 // Adjusted standard realistic base or matching display
+            }
+        ];
+
+
+      
+
+        // Reset to initial demo items
+        function resetItems() {
+            items = [
+                {
+                    id: 1,
+                    description: "Notebook",
+                    category: "Electrónica",
+                    rate: 0.305,
+                    base: 150000
+                },
+                {
+                    id: 2,
+                    description: "Libro de Historia",
+                    category: "Libros",
+                    rate: 0.0,
+                    base: 3000
+                },
+                {
+                    id: 3,
+                    description: "Alimentos Básicos",
+                    category: "Alimentos Básicos",
+                    rate: 0.105,
+                    base: 25000
+                }
+            ];
+            renderApp();
+            showToast("Tabla restaurada con valores predeterminados.");
+        }
+
+  
+
+     
+
+        // Theme toggle simulation
+        let isDarkMode = false;
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const icon = document.getElementById('theme-icon');
+            if(isDarkMode) {
+                icon.className = "fa-solid fa-moon text-blue-400";
+                showToast("Modo oscuro activado (Vista previa)");
+            } else {
+                icon.className = "fa-solid fa-sun text-amber-500";
+                showToast("Modo claro activado");
+            }
+        }
+
+       
+    </script>
