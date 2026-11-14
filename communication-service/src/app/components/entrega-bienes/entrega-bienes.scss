@@ -1,0 +1,65 @@
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.buscador {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  input {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+}
+
+.mensaje {
+  color: #666;
+}
+
+.error {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.datos-generales {
+  background-color: #f7f7f7;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  p {
+    margin: 0.3rem 0;
+  }
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 0.6rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #eee;
+  }
+}

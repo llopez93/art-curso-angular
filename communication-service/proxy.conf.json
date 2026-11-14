@@ -1,0 +1,8 @@
+{
+  "/materiales-api": {
+    "target": "https://testagenciaws.rionegro.gov.ar",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

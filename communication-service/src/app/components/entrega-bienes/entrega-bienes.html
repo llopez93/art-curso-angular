@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>Consulta de Entrega de Bienes</h2>
+
+  <!-- Buscador -->
+  <div class="buscador">
+    <label for="comprobanteInput">Número de Comprobante:</label>
+    <input
+      id="comprobanteInput"
+      type="number"
+      [(ngModel)]="idComprobante"
+      placeholder="Ej: 2568"
+    />
+    <button (click)="consultar()" [disabled]="cargando()">Buscar</button>
+  </div>
+
+  <!-- Mensajes de estado -->
+  @if (cargando()) {
+    <p class="mensaje">Cargando...</p>
+  }
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  <!-- Datos del comprobante -->
+  @if (comprobantes().length > 0) {
+    <div class="datos-generales">
+      <h3>{{ comprobantes()[0].dspComprobante }} (Nº {{ comprobantes()[0].numeroComprobante }})</h3>
+      <p><strong>Fecha:</strong> {{ comprobantes()[0].fecha }}</p>
+      <p><strong>Origen:</strong> {{ comprobantes()[0].dspDepositoOrigen }} ({{ comprobantes()[0].dspResponsableOrigen }})</p>
+      <p><strong>Destino:</strong> {{ comprobantes()[0].dspDepositoDestino }} ({{ comprobantes()[0].dspResponsableDestino }})</p>
+    </div>
+
+    <!-- Tabla con los ítems entregados -->
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Ítem</th>
+          <th>Cantidad</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of comprobantes(); track item.idComprobanteDetalle) {
+          <tr>
+            <td>{{ item.dspItem }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td>{{ item.dspEstadoBien }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
